@@ -16,10 +16,10 @@ db = SQLAlchemy(app)
 @app.route("/")
 def test():
     student = Student('rajkumar.j', 'rajkumar.j@gmail.com')
-    db.create_all()
-    db.session.add(student)
+    db.create_all() #create table
+    db.session.add(student) #insert
     db.session.commit()
-    results = Student.query.all()
+    results = Student.query.all() #fetch
     final_result = []
     for row in results:
         final_result.append('ID:{0}, Name:{1}, Email:{2}'.format(row.id, row.name, row.email))
@@ -38,10 +38,6 @@ class Student(db.Model):
 
     def __repr__(self):
         return 'Name: {0}, Email: {1}'.format( self.name, self.email)
-
-
-
-
 
 
 if __name__ == "__main__":
